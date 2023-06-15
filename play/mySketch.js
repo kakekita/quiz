@@ -1,5 +1,5 @@
 function setup() {
-	getData();
+	
 }
 
 function draw() {
@@ -97,3 +97,5 @@ function switch_answer(n,str) {
 		elem2.classList.add("hidden");
 	}
 }
+
+getData();
