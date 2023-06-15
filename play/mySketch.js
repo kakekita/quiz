@@ -19,12 +19,14 @@ async function getData() {
 	
 	var dict_m = [];
 	for(var arr of array) {
-		var postRef2 = db.collection(arr["key"]).doc(arr["value"]);
-		await postRef2.get().then(e => {
-			var d = e.data();
-			console.log(d);
-			dict_m.push(d);
-		});
+		for(var a in arr["value"]) {
+			var postRef2 = db.collection(arr["key"]).doc(arr["value"][a]);
+			await postRef2.get().then(e => {
+				var d = e.data();
+				console.log(d);
+				dict_m.push(d);
+			});
+		}
 	}
 	console.log(dict_m);
 	
@@ -52,7 +54,7 @@ function createTable(dict,ni) {
 		var mytd5 = document.createElement("td");
 		var mytd6 = document.createElement("td");
 		var mytd7 = document.createElement("td");
-		myth.textContent = String(dict[k]["date"].toDate().getMonth()+1)+"/"+String(dict[k]["date"].toDate().getDate())+" "+String(dict[k]["date"].toDate().getHours())+":"+String(dict[k]["date"].toDate().getMinutes());
+		myth.textContent = String(dict[k]["date"].toDate().getMonth()+1)+"/"+String(dict[k]["date"].toDate().getDate())+" "+String(dict[k]["date"].toDate().getHours())+":"+String("0"+String(dict[k]["date"].toDate().getMinutes())).slice(-2);
 		mytd1.textContent = String(dict[k]["title"]);
 		mytd2.textContent = String(dict[k]["hint1"]);
 		mytd3.textContent = String(dict[k]["hint2"]);
