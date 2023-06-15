@@ -1,0 +1,21 @@
+.table_all {
+  background-color: azure;
+  border-collapse: collapse;
+}
+.th_all {
+  background-color: rgb(110,219,255);
+}
+
+table th, table td {
+  border: solid 1px #aaa;
+  padding:10px;
+  height: 30px
+}
+
+.hidden {
+	display: none;
+}
+
+a {
+	color: royalblue;
+}
