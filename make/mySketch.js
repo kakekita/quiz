@@ -2,7 +2,7 @@ function setup() {
 	
 }
 
-function make_quiz() {
+async function make_quiz() {
 	var quiz_elem = {
 		"title": document.getElementById("i_title"),
 		"hint1": document.getElementById("i_hint1"),
@@ -39,7 +39,18 @@ function make_quiz() {
 		i++;
 	}
 	save_database("date",date,quiz_data["account"],quiz_data["title"]);
-	save_database(quiz_data["account"],quiz_data["title"],"users","numbers");
+	var db = firebase.firestore();
+	var postRef1 = db.collection("users").doc("numbers");
+	var array = [];
+	await postRef1.get().then(e => {
+		var a = e.data();
+		if(quiz_data["account"] in Object.keys(a)) {
+			array = a[quiz_data["account"]];
+		}
+		console.log(e.data())
+	});
+	array.push(quiz_data["title"]);
+	save_database(quiz_data["account"],array,"users","numbers");
 }
 
 function draw() {
