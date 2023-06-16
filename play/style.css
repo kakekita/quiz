@@ -21,6 +21,6 @@ table th, table td {
 	visibility: hidden;
 }
 
-a {
+.link_a {
 	color: royalblue;
 }
