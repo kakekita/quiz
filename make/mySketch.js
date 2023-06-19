@@ -44,7 +44,7 @@ async function make_quiz() {
 	var array = [];
 	await postRef1.get().then(e => {
 		var a = e.data();
-		if(quiz_data["account"] in Object.keys(a)) {
+		if(Object.keys(a).indexOf(quiz_data["account"]) != -1) {
 			array = a[quiz_data["account"]];
 		}
 		console.log(e.data())
